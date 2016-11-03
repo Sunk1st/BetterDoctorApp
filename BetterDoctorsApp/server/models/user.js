@@ -1,11 +1,15 @@
 var mongoose = require('mongoose')
 
 var UserSchema = new mongoose.Schema({
-	name: {
+	username: {
 		type: String,
 		unique: true,
-		required: [true, "Must enter a unique!"],
+		required: [true, "Must enter a unique username!"],
 		},
+	password: {
+		type: String,
+		required: [true, "Must enter a password!"],
+	}
 
 }, {timestamps: true})
 

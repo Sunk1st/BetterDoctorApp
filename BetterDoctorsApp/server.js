@@ -6,6 +6,8 @@ var app = express();
 
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+app.use(express.static(path.join(__dirname, 'css/jqwidgets-ver4.3.0')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 

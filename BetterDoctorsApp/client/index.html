@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="shortcut icon" href="">
-		<title>Bucket List</title>
-		<script src='angular/angular.js'></script>
-    	<script src='angular-route/angular-route.js'></script>
-    	<script src='angular-cookies/angular-cookies.js'></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="angular/angular.min.js"></script>
+	    <script src="angular-route/angular-route.min.js"></script>
+	    <script src="angular-cookies/angular-cookies.js"></script>
+		<!-- ______________angular material and dependencies______________ -->
+	    <script src="angular-animate/angular-animate.min.js"></script>
+	    <script src="angular-aria/angular-aria.min.js"></script>
+	    <script src="angular-messages/angular-messages.min.js"></script>
+	    <script src="angular-material/angular-material.min.js"></script>
+	    <link rel="stylesheet" href="angular-material/angular-material.min.css">
+		<!-- _____________________________________________________________ -->
     	<script src='assets/app.js'></script>
     	<script src='assets/factories/userFactory.js'></script>
-    	<script src='assets/factories/actionsFactory.js'></script>
     	<script src='assets/controllers/loginController.js'></script>
-    	<script src='assets/controllers/actionsController.js'></script>
 
 	</head>
-	<body ng-app='app'>
+	<body ng-app='app' ng-cloak>
 		<div ng-view></div>
 	</body>
 </html>

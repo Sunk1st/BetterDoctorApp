@@ -1,15 +1,27 @@
-var app = angular.module('app', ['ngRoute', 'ngCookies']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngMessages']);
+app.config(function($mdThemingProvider) {
+
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue', {
+      'default': '400', // by default use shade 400 from the pink palette for primary intentions
+      'hue-1': '300', // use shade 100 for the <code>md-hue-1</code> class
+      'hue-2': '800', // use shade 600 for the <code>md-hue-2</code> class
+      'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
+    })
+    // If you specify less than all of the keys, it will inherit from the
+    // default shades
+    .accentPalette('amber', {
+      'default': '700' // use shade 200 for default, and keep all other shades the same
+    });
+
+});
+
 
 app.config(function($routeProvider){
 	$routeProvider
-	.when('/index', {
+	.when('/', {
 		templateUrl: 'partials/login.html',
-	})
-	.when('/dashboard', {
-		templateUrl: 'partials/dashboard.html',
-	})
-	.when('/user/:id', {
-		templateUrl: 'partials/orders.html',
+		controller: 'loginController'
 	})
 	.otherwise({
 		templateUrl: 'partials/login.html',
