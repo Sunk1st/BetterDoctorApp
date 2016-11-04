@@ -13,15 +13,22 @@ app.config(function($mdThemingProvider) {
     .accentPalette('amber', {
       'default': '700' // use shade 200 for default, and keep all other shades the same
     });
-
 });
-
-
 app.config(function($routeProvider){
 	$routeProvider
 	.when('/', {
 		templateUrl: 'partials/login.html',
-		controller: 'loginController'
+		controller: 'loginController',
+	})
+	.when('/dashboard', {
+		templateUrl: 'partials/dashboard.html',
+	})
+	.when('/searchDoctor', {
+		templateUrl: 'partials/searchDoctor.html',
+		controller: 'doctorController',
+	})
+	.when('/searchPractice', {
+		templateUrl: 'partials/searchPractice.html',
 	})
 	.otherwise({
 		templateUrl: 'partials/login.html',

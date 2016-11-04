@@ -1,4 +1,4 @@
-<div ng-cloak>
+<div ng-controller="doctorController">
   <md-content class="md-padding">
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
       <md-nav-item md-nav-href='#/dashboard' name="page1">Dashboard</md-nav-item>
@@ -6,10 +6,13 @@
       <md-nav-item md-nav-href="#/searchPractice" name="page3">Search Practice</md-nav-item>
     </md-nav-bar>
     <div class="ext-content">
-      <table>
-      	
-      	
-      </table>
+      <form>
+        <h3>Doctor Inputs</h3>
+          <p>First Name<input>{{user.Name}}</p>
+          <p>Last Name<input></p>
+          User Lat: <input ng-model="user.Lat"/>
+          <p>User Long: {{userLong}}</p>
+          <p>User Lat: {{userLat}}</p>
     </div>
   </md-content>
- </div>
+</div>

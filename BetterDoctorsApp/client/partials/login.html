@@ -1,10 +1,10 @@
-<div ng-cloak>
+<div ng-cloak ng-controller='loginController'>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Login"  layout='column' ng-cloak>
         <md-content class="md-padding">
           <h1 class="md-title">
-            <form name='loginForm'>
+            <form name='loginForm' ng-submit='loginUser()'>
                 <md-input-container class="md-block">
                     <label>Username</label>
                     <input md-maxlength="30" required md-no-asterisk name="Username" ng-model="user.username">
@@ -29,7 +29,7 @@
       <md-tab label="Registration">
         <md-content class="md-padding">
           <h1 class="md-title">
-            <form name='registerForm' ng-submit='registerUse()'>
+            <form name='registerForm' ng-submit='registerUser()'>
                 <div layout="row">
                     <md-input-container flex="50">
                         <label>First Name</label>

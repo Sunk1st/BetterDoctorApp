@@ -5,7 +5,7 @@ var path = require('path');
 
 var models_path = path.join(__dirname, '/../models');
 var reg = new RegExp(".js$", "i");
-var dbURI = 'mongodb://localhost/doctorsAPI';
+var dbURI = 'mongodb://localhost/doctors';
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
 

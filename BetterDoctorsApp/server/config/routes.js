@@ -7,8 +7,8 @@ console.log('routes');
 var path = require('path');
 
 module.exports = function(app){
-	// app.get('/users', users.index);
-	app.get('/login', users.login);
-	// app.get('/dashboard', actions.index)
+	// Login/Registration
+	app.post('/login', users.login);
+	app.post('/register', users.register);
 
 };
