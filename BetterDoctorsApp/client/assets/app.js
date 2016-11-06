@@ -1,6 +1,10 @@
 var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngMessages']);
 app.config(function($mdThemingProvider) {
 
+   $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
+
   $mdThemingProvider.theme('default')
     .primaryPalette('blue', {
       'default': '400', // by default use shade 400 from the pink palette for primary intentions
