@@ -4,23 +4,47 @@
   </div>
   <form name='filterForm' ng-submit='findDoctors()'>
   	<md-content md-theme="docs-dark" layout-gt-sm="row">
-    	<div>
-		    <md-input-container>
+    	<div layout-gt-sm="row">
+		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>First Name</label>
 		        <input ng-model="filter.first_name">
 		    </md-input-container>
-		    <md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>Last Name</label>
 		        <input ng-model="filter.last_name">
-		    </md-input-container>
-		    <md-input-container>
+		    </md-input-container flex="20">
+		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>Gender</label>
-		        <input ng-model="filter.gender">
+		        <md-select ng-model="filter.gender">
+		        	<md-option value="male">Male</md-option>
+		        	<md-option value="female">Female</md-option>
+		        </md-select>
 		    </md-input-container>
-		    <md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>Distance</label>
-		        <input ng-model="filter.distance">
+		        <md-select ng-model="filter.distance">
+		        	<md-option value="5">5 Miles</md-option>
+		        	<md-option value="10">10 Miles</md-option>
+		        	<md-option value="25">25 Miles</md-option>
+		        	<md-option value="50">50 Miles</md-option>
+		        	<md-option value="100">100 Miles</md-option>
+		        </md-select>
 		    </md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm>
+	        	<label>Sort</label> 
+	         	<md-select ng-model="filter.sort">
+	         		<md-option value="best-match-asc">Best Match Ascending</md-option>
+	         		<md-option value="best-match-desc">Best Match Descending</md-option>
+	         		<md-option value="rating-asc">Rating Ascending</md-option>
+	         		<md-option value="rating-desc">Rating Descending</md-option>
+	         		<md-option value="distance-asc">Distance Ascending</md-option>
+	         		<md-option value="distance-desc">Distance Descending</md-option>
+	         		<md-option value="first-name-asc">First Name Ascending</md-option>
+	         		<md-option value="first-name-desc">First Name Descending</md-option>
+	         		<md-option value="last-name-asc">Last Name Ascending</md-option>
+	         		<md-option value="last-name-desc">Last Name Descending</md-option>
+	       		</md-select>
+	      	</md-input-container>
 	    </div>
  	</md-content>
   	<md-content md-theme="docs-dark" layout-gt-sm="row">
@@ -28,10 +52,6 @@
 	      <md-input-container>
 	        <label>Insurance</label>
 	        <input ng-model="filter.insurance">
-	      </md-input-container>
-	      <md-input-container>
-	        <label>Sort</label>
-	        <input ng-model="filter.sort">
 	      </md-input-container>
 	      <md-input-container>
 	        <label>Fields</label>
