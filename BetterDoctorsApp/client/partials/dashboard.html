@@ -48,10 +48,12 @@
 	    </div>
  	</md-content>
   	<md-content md-theme="docs-dark" layout-gt-sm="row">
-    	<div>
+    	<div layout-gt-sm="row">
 	      <md-input-container>
 	        <label>Insurance</label>
-	        <input ng-model="filter.insurance">
+	        <md-select ng-model="filter.insurance" >
+	        	<md-option ng-repeat='insurance in insurance_uids | orderBy:insurance.name ' name={{insurance.uid}} value={{insurance.uid}}>{{insurance.name}}</md-option>
+	   		</md-select>
 	      </md-input-container>
 	      <md-input-container>
 	        <label>Fields</label>
@@ -65,4 +67,29 @@
       	</div>
    	</md-content>
   </form>
+  	<md-content class="md-padding" layout-xs="column" layout="row">
+      <div flex-xs flex-gt-xs="50" layout="column">
+	      <div ng-repeat='doctors in doctorProfiles' id="scrollable">
+	      	<div id = "cards">
+		      <md-card md-theme="dark-blue" md-theme-watch class="card">
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Dr. {{doctors.first_name}} {{doctors.last_name}} </span>
+		            <span class="md-subhead">{{doctors.bio}}</span>
+		          </md-card-title-text>
+		          <md-card-title-media>
+		            <div class="md-media-lg card-media">
+		            	<img ng-src="{{doctors.image_url}}" />
+		            </div>
+		          </md-card-title-media>
+		        </md-card-title>
+		        <md-card-actions layout="row" layout-align="end center">
+		          <md-button>Location</md-button>
+		          <md-button>More Info</md-button>
+		        </md-card-actions>
+		      </md-card>
+			</div>
+	      <div>
+	  </div>
+	</md-content>
 </div>

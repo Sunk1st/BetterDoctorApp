@@ -38,10 +38,19 @@ app.factory('doctorFactory', ['$http', function($http) {
  			start += 'limit=' + data.filter.limit + '&'
  		}
  		start += user_key
- 		//Make an API call with URL 
+ 		//Make an API call with URL
+ 		console.log(start)
  		$http.get(start).then(function(res) {
  			callback(res)
  		})
+ 	}
+ 	this.postInsurance = function(data, callback) {
+ 		console.log(data);
+ 		$http.post('/insurance', data).then(
+ 			function(returned_data) {
+ 				console.log('Returned Data', returned_data.data)
+ 				callback(returned_data);
+ 			});
  	}
     }
     return new doctorFactory();
