@@ -2,6 +2,7 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       $scope.insurances = [];
       $scope.doctorProfiles = [];
       $scope.doctors = [];
+      $scope.specialties = [];
      /*-------Navigator to get Latitude and Longitude of User-------*/
      $scope.getLatLong = function () {
         $window.navigator.geolocation.getCurrentPosition(function(position) {
@@ -18,48 +19,56 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
     /*----------Uses an API call to grab insurance info-------------*/
     $scope.getInsurance = function () {
       doctorFactory.getInsurance( function (res) {
-        console.log("response data = ", res);
+        function compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+        }
+        res.sort(compare);
         $scope.insurances = res
       })
     }
     $scope.getInsurance();
     $scope.getSpecialty = function () {
-      specialty_url = 'https://api.betterdoctor.com/2016-03-01/specialties?user_key=042d852d3e7416f52f932e01afaee003'
-
-      $http.get(specialty_url).then(function(res) {
-        // console.log(res);
+       doctorFactory.getSpecialty( function (res) {
+        function compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+        }
+        res.sort(compare);
+        $scope.specialties = res
       })
     }
-    // $scope.getSpecialty();
+    $scope.getSpecialty();
 
-    $scope.findDoctors = function () {
-      doctorFactory.findDoctors($scope, function (res) {
-        console.log(res)
+    $scope.getDoctors = function () {
+      doctorFactory.getDoctors($scope, function (res) {
         for (var i = 0; i < res.data.data.length; i++) {
           $scope.doctorProfiles.push(res.data.data[i].profile)
           $scope.doctors.push(res.data.data[i])
         }
-        console.log('doctors', $scope.doctors)
       })
     }
-    $scope.showLocation = function(location, latitude, longitude) {
+    $scope.getLocation = function(eve) {
       $mdDialog.show({
         controller: DialogController,
+        locals:{dataToPass: $scope.doctors},
         templateUrl: 'partials/doctorLocation.html',
         parent: angular.element(document.body),
-        targetEvent: location,
+        targetEvent: eve,
         clickOutsideToClose:true,
-        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        // fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
       })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
     };
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, dataToPass) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
+      $scope.doctors = dataToPass
     }
 }]);

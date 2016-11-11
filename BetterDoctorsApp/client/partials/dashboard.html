@@ -2,7 +2,7 @@
   <div layout-gt-sm="row">
   	<h3>Find a Doctor</h3>
   </div>
-  <form name='filterForm' ng-submit='findDoctors()'>
+  <form name='filterForm' ng-submit='getDoctors()'>
   	<md-content md-theme="docs-dark" layout-gt-sm="row">
     	<div layout-gt-sm="row">
 		    <md-input-container class="md-block" flex-gt-sm>
@@ -16,13 +16,6 @@
 		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>Gender</label>
 		        <md-select ng-model="filter.gender">
-		        	<md-option value="male">Male</md-option>
-		        	<md-option value="female">Female</md-option>
-		        </md-select>
-		    </md-input-container>
-		     <md-input-container class="md-block" flex-gt-sm>
-		        <label>Specialty</label>
-		        <md-select ng-model="filter.specialty">
 		        	<md-option value="male">Male</md-option>
 		        	<md-option value="female">Female</md-option>
 		        </md-select>
@@ -56,6 +49,12 @@
  	</md-content>
   	<md-content md-theme="docs-dark" layout-gt-sm="row">
     	<div layout-gt-sm="row">
+		  <md-input-container class="md-block" flex-gt-sm>
+	        <label>Specialty</label>
+	        <md-select ng-model="filter.specialty">
+	        	<md-option ng-repeat='specialty in specialties' name={{specialty.uid}} value={{specialty.uid}}>{{specialty.name}}</md-option>
+	        </md-select>
+	      </md-input-container>
 	      <md-input-container>
 	        <label>Insurance</label>
 	        <md-select ng-model="filter.insurance" >
@@ -67,7 +66,7 @@
 	        <input ng-model="filter.fields">
 	      </md-input-container>
 	      <md-input-container>
-	        <label>Number of Doctors</label>
+	        <label>Number of Matches</label>
 	        <input ng-model="filter.limit">
 	      </md-input-container>
       	  <md-button type="submit" class="md-primary">Find Doctors</md-button>
@@ -91,7 +90,7 @@
 		          </md-card-title-media>
 		        </md-card-title>
 		        <md-card-actions layout="row" layout-align="end center">
-		          <md-button class='md-primary md-raised' ng-click="showLocation($event)">Location</md-button>
+		          <md-button class='md-primary md-raised' ng-click="getLocation($event)">Location</md-button>
 		          <md-button>More Info</md-button>
 		        </md-card-actions>
 		      </md-card>
