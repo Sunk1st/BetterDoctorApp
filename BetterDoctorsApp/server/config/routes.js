@@ -9,5 +9,5 @@ module.exports = function(app){
 	// Login/Registration
 	app.post('/login', users.login);
 	app.post('/register', users.register);
-	app.post('/insurance', insurances.postInsurance);
+	// app.post('/insurance', insurances.postInsurance);
 };

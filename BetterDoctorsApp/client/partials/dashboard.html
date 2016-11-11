@@ -20,6 +20,13 @@
 		        	<md-option value="female">Female</md-option>
 		        </md-select>
 		    </md-input-container>
+		     <md-input-container class="md-block" flex-gt-sm>
+		        <label>Specialty</label>
+		        <md-select ng-model="filter.specialty">
+		        	<md-option value="male">Male</md-option>
+		        	<md-option value="female">Female</md-option>
+		        </md-select>
+		    </md-input-container>
 		    <md-input-container class="md-block" flex-gt-sm>
 		        <label>Distance</label>
 		        <md-select ng-model="filter.distance">
@@ -52,15 +59,15 @@
 	      <md-input-container>
 	        <label>Insurance</label>
 	        <md-select ng-model="filter.insurance" >
-	        	<md-option ng-repeat='insurance in insurance_uids | orderBy:insurance.name ' name={{insurance.uid}} value={{insurance.uid}}>{{insurance.name}}</md-option>
+	        	<md-option ng-repeat='insurance in insurances' name={{insurance.uid}} value={{insurance.uid}}>{{insurance.name}}</md-option>
 	   		</md-select>
 	      </md-input-container>
 	      <md-input-container>
-	        <label>Fields</label>
+	        <label>Query</label>
 	        <input ng-model="filter.fields">
 	      </md-input-container>
 	      <md-input-container>
-	        <label>Limit</label>
+	        <label>Number of Doctors</label>
 	        <input ng-model="filter.limit">
 	      </md-input-container>
       	  <md-button type="submit" class="md-primary">Find Doctors</md-button>
@@ -69,22 +76,22 @@
   </form>
   	<md-content class="md-padding" layout-xs="column" layout="row">
       <div flex-xs flex-gt-xs="50" layout="column">
-	      <div ng-repeat='doctors in doctorProfiles' id="scrollable">
+	      <div ng-repeat='doctor in doctors' id="scrollable">
 	      	<div id = "cards">
 		      <md-card md-theme="dark-blue" md-theme-watch class="card">
 		        <md-card-title>
 		          <md-card-title-text>
-		            <span class="md-headline">Dr. {{doctors.first_name}} {{doctors.last_name}} </span>
-		            <span class="md-subhead">{{doctors.bio}}</span>
+		            <span class="md-headline">Dr. {{doctor.profile.first_name}} {{doctor.profile.last_name}} </span>
+		            <span class="md-subhead">{{doctor.profile.bio}}</span>
 		          </md-card-title-text>
 		          <md-card-title-media>
 		            <div class="md-media-lg card-media">
-		            	<img ng-src="{{doctors.image_url}}" />
+		            	<img ng-src="{{doctor.profile.image_url}}" />
 		            </div>
 		          </md-card-title-media>
 		        </md-card-title>
 		        <md-card-actions layout="row" layout-align="end center">
-		          <md-button>Location</md-button>
+		          <md-button class='md-primary md-raised' ng-click="showLocation($event)">Location</md-button>
 		          <md-button>More Info</md-button>
 		        </md-card-actions>
 		      </md-card>

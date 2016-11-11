@@ -26,13 +26,6 @@ app.config(function($routeProvider){
 	.when('/dashboard', {
 		templateUrl: 'partials/dashboard.html',
 	})
-	.when('/searchDoctor', {
-		templateUrl: 'partials/searchDoctor.html',
-		controller: 'doctorController',
-	})
-	.when('/searchPractice', {
-		templateUrl: 'partials/searchPractice.html',
-	})
 	.otherwise({
 		templateUrl: 'partials/login.html',
 	})

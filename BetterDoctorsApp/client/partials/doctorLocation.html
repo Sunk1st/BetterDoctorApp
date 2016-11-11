@@ -1,0 +1,19 @@
+<md-dialog>
+	<h3>{{doctors[0]}}</h3>
+	
+	<div id="map" style="width:100%;height:250px"></div>
+	<script>
+		function myMap() {
+			var mapCanvas = document.getElementById("map");
+			var mapOptions = {
+			    center: new google.maps.LatLng(51.508742,-0.120850),
+			    zoom: 5
+			};
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+		}
+	</script>
+	<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCxg3I8JPsNwlX4RgTg4xqAWfdYU2tzPTs"></script> -->
+
+	<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+</md-dialog>
+
