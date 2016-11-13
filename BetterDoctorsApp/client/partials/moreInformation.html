@@ -1,0 +1,48 @@
+<md-dialog aria-label="More Information">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>Dr. {{doctor.profile.first_name}} {{doctor.profile.middle_name}} {{doctor.profile.last_name}}, {{doctor.profile.title}}</h1>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+    	<img style="margin: auto; max-width: 100%;" alt="{{doctor.profile.slug}}" ng-src="{{doctor.profile.image_url}}">
+        <h2>Bio</h2>
+        <p>
+          {{doctor.profile.bio}}
+        </p>
+        <h2>Education</h2>
+        <p ng-repeat="education in doctor.educations">
+        	<span>-{{education.school}}, {{education.degree}}</span>
+        </p>
+        <h2>Insurance Taken</h2>
+        <p ng-repeat="insurance in doctor.insurances">
+        	<span>-Insurance Provider: {{insurance.insurance_provider.name}} Insurance Plan: {{insurance.insurance_plan.name}} </span>
+        </p>
+        <h2>Practices</h2>
+        <p ng-repeat="practice in doctor.">
+
+        </p>
+    
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+       Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+

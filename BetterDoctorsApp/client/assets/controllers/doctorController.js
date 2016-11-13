@@ -1,6 +1,6 @@
 app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory', '$cookies', '$location', '$mdDialog', function($scope, $window, $http, doctorFactory, $cookies, $location, $mdDialog){
       $scope.insurances = [];
-      $scope.doctorProfiles = [];
+      $scope.doctorSpecialties = [];
       $scope.doctors = [];
       $scope.specialties = [];
      /*-------Navigator to get Latitude and Longitude of User-------*/
@@ -50,17 +50,17 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       $scope.doctors = []
       doctorFactory.getDoctors($scope, function (res) {
         for (var i = 0; i < res.data.data.length; i++) {
-          $scope.doctorProfiles.push(res.data.data[i].profile)
           $scope.doctors.push(res.data.data[i])
         }
+        console.log($scope.doctors)
       })
     }
-    $scope.getLocation = function(eve, doctor) {
+    $scope.getMoreInfo = function(eve, doctor) {
       console.log(doctor)
       $mdDialog.show({
         controller: DialogController,
         locals:{dataToPass: doctor},
-        templateUrl: 'partials/doctorLocation.html',
+        templateUrl: 'partials/moreInformation.html',
         parent: angular.element(document.body),
         targetEvent: eve,
         clickOutsideToClose:true,

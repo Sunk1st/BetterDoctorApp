@@ -16,6 +16,9 @@ app.factory('doctorFactory', ['$http', function($http) {
  		if (data.filter.query) {
  			start += 'query=' + data.filter.query + '&'
  		}
+ 		if (data.filter.specialty) {
+ 			start += 'specialty_uid=' + data.filter.specialty + '&'
+ 		}
  		if (data.filter.insurance) {
  			start += 'insurance_uid=' + data.filter.insurance + '&'
  		}

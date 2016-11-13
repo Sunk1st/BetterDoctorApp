@@ -82,8 +82,12 @@
 		      <md-card md-theme="dark-blue" md-theme-watch class="card">
 		        <md-card-title>
 		          <md-card-title-text>
-		            <span class="md-headline">Dr. {{doctor.profile.first_name}} {{doctor.profile.last_name}} </span>
-		            <span class="md-subhead">{{doctor.profile.bio}}</span>
+		            <span class="md-headline">Dr. {{doctor.profile.first_name}} {{doctor.profile.middle_name}} {{doctor.profile.last_name}}, {{doctor.profile.title}} </span>
+		            <span class="md-subhead" ng-repeat='specialty in doctor.specialties'>Specialty: {{specialty.name}} </span>
+		            <span class="md-subhead" ng-repeat='practice in doctor.practices'>Practice: <b>{{practice.name}}</b> in {{practice.visit_address.city}}, {{practice.visit_address.state}} </span>
+		            <span class="md-subhead" ng-repeat='language in doctor.profile.languages'>Language: {{language.name}}</span>
+
+		            <p>BetterDoctors Rating: <img ng-src="{{doctor.ratings[0].image_url_small}}" /></p>
 		          </md-card-title-text>
 		          <md-card-title-media>
 		            <div class="md-media-lg card-media">
@@ -92,8 +96,7 @@
 		          </md-card-title-media>
 		        </md-card-title>
 		        <md-card-actions layout="row" layout-align="end center">
-		          <md-button class='md-primary md-raised' ng-click="getLocation($event, this.doctor)">Location</md-button>
-		          <md-button>More Info</md-button>
+		          <md-button class='md-primary md-raised' ng-click="getMoreInfo($event, this.doctor)">More Information</md-button>
 		        </md-card-actions>
 		      </md-card>
 			</div>
