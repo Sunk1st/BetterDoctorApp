@@ -47,6 +47,7 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
     $scope.getSpecialty();
 
     $scope.getDoctors = function () {
+      $scope.doctors = []
       doctorFactory.getDoctors($scope, function (res) {
         for (var i = 0; i < res.data.data.length; i++) {
           $scope.doctorProfiles.push(res.data.data[i].profile)
@@ -54,10 +55,11 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
         }
       })
     }
-    $scope.getLocation = function(eve) {
+    $scope.getLocation = function(eve, doctor) {
+      console.log(doctor)
       $mdDialog.show({
         controller: DialogController,
-        locals:{dataToPass: $scope.doctors},
+        locals:{dataToPass: doctor},
         templateUrl: 'partials/doctorLocation.html',
         parent: angular.element(document.body),
         targetEvent: eve,
@@ -69,6 +71,6 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       $scope.hide = function() {
         $mdDialog.hide();
       };
-      $scope.doctors = dataToPass
+      $scope.doctor = dataToPass
     }
 }]);

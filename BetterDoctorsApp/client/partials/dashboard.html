@@ -52,12 +52,14 @@
 		  <md-input-container class="md-block" flex-gt-sm>
 	        <label>Specialty</label>
 	        <md-select ng-model="filter.specialty">
+	        	<md-option></md-option>
 	        	<md-option ng-repeat='specialty in specialties' name={{specialty.uid}} value={{specialty.uid}}>{{specialty.name}}</md-option>
 	        </md-select>
 	      </md-input-container>
 	      <md-input-container>
 	        <label>Insurance</label>
 	        <md-select ng-model="filter.insurance" >
+	        	<md-option></md-option>
 	        	<md-option ng-repeat='insurance in insurances' name={{insurance.uid}} value={{insurance.uid}}>{{insurance.name}}</md-option>
 	   		</md-select>
 	      </md-input-container>
@@ -90,7 +92,7 @@
 		          </md-card-title-media>
 		        </md-card-title>
 		        <md-card-actions layout="row" layout-align="end center">
-		          <md-button class='md-primary md-raised' ng-click="getLocation($event)">Location</md-button>
+		          <md-button class='md-primary md-raised' ng-click="getLocation($event, this.doctor)">Location</md-button>
 		          <md-button>More Info</md-button>
 		        </md-card-actions>
 		      </md-card>
