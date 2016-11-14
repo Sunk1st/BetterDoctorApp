@@ -50,12 +50,18 @@ app.factory('doctorFactory', ['$http', function($http) {
  	
  	this.getInsurance = function(callback) {
  		var arr = []
+ 		return_arr = []
  		insurance_url = 'https://api.betterdoctor.com/2016-03-01/insurances?user_key=042d852d3e7416f52f932e01afaee003'
         $http.get(insurance_url).then(function(res) {
         	arr = $.map(res, function(el) {
         		return el
        		})
-       		callback(arr[0].data);
+       		for (var i = 0; i < arr[0].data.length; i++) {
+       			for (var k = 0; k < arr[0].data[i].plans.length; k++) {
+       				return_arr.push(arr[0].data[i].plans[k])
+       			}
+       		}
+       		callback(return_arr);
         })
  	}
  	this.getSpecialty = function(callback) {

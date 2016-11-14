@@ -24,7 +24,13 @@
         	<span>-Insurance Provider: {{insurance.insurance_provider.name}} Insurance Plan: {{insurance.insurance_plan.name}} </span>
         </p>
         <h2>Practices</h2>
-        <p ng-repeat="practice in doctor.">
+        <p ng-repeat="practice in doctor.practices">
+        	<span>-{{practice.name}} at {{practice.visit_address.street}} {{practice.visit_address.street}} {{practice.visit_address.city}}, {{practice.visit_address.state}} {{practice.visit_address.zip}} </span>
+        </p>
+        <h2>Ratings</h2>
+        <p ng-repeat='rating in doctor.ratings'>
+        	<span>Rating: {{rating.provider}} 
+        	</span>
 
         </p>
     

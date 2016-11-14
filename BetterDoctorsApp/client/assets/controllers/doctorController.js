@@ -1,8 +1,7 @@
 app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory', '$cookies', '$location', '$mdDialog', function($scope, $window, $http, doctorFactory, $cookies, $location, $mdDialog){
-      $scope.insurances = [];
-      $scope.doctorSpecialties = [];
       $scope.doctors = [];
       $scope.specialties = [];
+      $scope.insurances = [];
      /*-------Navigator to get Latitude and Longitude of User-------*/
      $scope.getLatLong = function () {
         $window.navigator.geolocation.getCurrentPosition(function(position) {
@@ -31,6 +30,7 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       })
     }
     $scope.getInsurance();
+
     $scope.getSpecialty = function () {
        doctorFactory.getSpecialty( function (res) {
         function compare(a,b) {
