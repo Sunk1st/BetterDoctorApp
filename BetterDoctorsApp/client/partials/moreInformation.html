@@ -25,28 +25,22 @@
         </p>
         <h2>Practices</h2>
         <p ng-repeat="practice in doctor.practices">
-        	<span>-{{practice.name}} at {{practice.visit_address.street}} {{practice.visit_address.street}} {{practice.visit_address.city}}, {{practice.visit_address.state}} {{practice.visit_address.zip}} </span>
+        	<span>-{{practice.name}} at {{practice.visit_address.street}} {{practice.visit_address.street}} {{practice.visit_address.city}}, {{practice.visit_address.state}} {{practice.visit_address.zip}} Phone Number: {{practice.phones[0].number}} <a ng-href="https://www.google.com/maps/?q={{practice.lat}},{{practice.lon}}">Directions</a></span>
         </p>
         <h2>Ratings</h2>
         <p ng-repeat='rating in doctor.ratings'>
-        	<span>Rating: {{rating.provider}} 
-        	</span>
-
-        </p>
-    
+        	{{rating.provider}}  Rating: {{rating.rating}} Review Count: {{rating.review_count}}  <a ng-href="{{rating.provider_url}}">{{rating.provider_url}}</a> <img ng-src="{{rating.image_url_large}}" />
+        </p> 
       </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        More on Wikipedia
-      </md-button>
       <span flex></span>
       <md-button ng-click="answer('not useful')">
-       Not Useful
+       Add to My Doctors
       </md-button>
       <md-button ng-click="answer('useful')">
-        Useful
+        Close
       </md-button>
     </md-dialog-actions>
   </form>
