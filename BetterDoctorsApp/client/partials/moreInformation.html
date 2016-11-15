@@ -25,7 +25,7 @@
         </p>
         <h2>Practices</h2>
         <p ng-repeat="practice in doctor.practices">
-        	<span>-{{practice.name}} at {{practice.visit_address.street}} {{practice.visit_address.street}} {{practice.visit_address.city}}, {{practice.visit_address.state}} {{practice.visit_address.zip}} Phone Number: {{practice.phones[0].number}} <a ng-href="https://www.google.com/maps/?q={{practice.lat}},{{practice.lon}}">Directions</a></span>
+        	<span>-{{practice.name}} at {{practice.visit_address.street}} {{practice.visit_address.street}} {{practice.visit_address.city}}, {{practice.visit_address.state}} {{practice.visit_address.zip}} Phone Number: {{practice.phones[0].number}} <a ng-href="https://www.google.com/maps/?q={{practice.lat}},{{practice.lon}}">Location</a>
         </p>
         <h2>Ratings</h2>
         <p ng-repeat='rating in doctor.ratings'>
@@ -36,10 +36,10 @@
 
     <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button ng-click="answer('not useful')">
+      <md-button ng-click="addDoctor(this)">
        Add to My Doctors
       </md-button>
-      <md-button ng-click="answer('useful')">
+      <md-button ng-click="cancel()">
         Close
       </md-button>
     </md-dialog-actions>

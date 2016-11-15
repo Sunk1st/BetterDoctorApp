@@ -1,5 +1,5 @@
 var users = require('./../controllers/Users.js')
-var insurances = require('./../controllers/Insurances.js')
+var doctors = require('./../controllers/doctors.js')
 
 //--------routes------------------//
 
@@ -9,5 +9,6 @@ module.exports = function(app){
 	// Login/Registration
 	app.post('/login', users.login);
 	app.post('/register', users.register);
+	app.post('/addDoctor', doctors.add);
 	// app.post('/insurance', insurances.postInsurance);
 };

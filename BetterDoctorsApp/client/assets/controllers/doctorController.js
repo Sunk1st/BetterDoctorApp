@@ -2,6 +2,8 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       $scope.doctors = [];
       $scope.specialties = [];
       $scope.insurances = [];
+      $scope.first_name = $cookies.get('first_name')
+      $scope._id = $cookies.get('_id')
      /*-------Navigator to get Latitude and Longitude of User-------*/
      $scope.getLatLong = function () {
         $window.navigator.geolocation.getCurrentPosition(function(position) {
@@ -52,11 +54,14 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
         for (var i = 0; i < res.data.data.length; i++) {
           $scope.doctors.push(res.data.data[i])
         }
-        console.log($scope.doctors)
       })
     }
+    $scope.logOut = function() {
+      $cookies.remove('first_name')
+      $cookies.remove('_id')
+      $location.url('/')
+    }
     $scope.getMoreInfo = function(eve, doctor) {
-      console.log(doctor)
       $mdDialog.show({
         controller: DialogController,
         locals:{dataToPass: doctor},
@@ -67,42 +72,30 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
         // fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
       })
     };
+    $scope.myDoctors = function(eve, user) {
+       $mdDialog.show({
+        controller: DialogController,
+        locals:{dataToPass: user},
+        templateUrl: 'partials/myDoctors.html',
+        parent: angular.element(document.body),
+        targetEvent: eve,
+        clickOutsideToClose:true,
+        // fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+      })
+    }
     function DialogController($scope, dataToPass) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      }
+      $scope.addDoctor = function() {
+        console.log(this.doctor)
+        doctorFactory.addDoctor(this.doctor, function (res) {
+          console.log(res)
+        })
+      }
       $scope.doctor = dataToPass
     }
-    // function insuranceController ($timeout, $q, $log) {
-    //   var self = this;
-    //   self.simulateQuery = false;
-    //   self.isDisabled    = false;
-    //   self.insurances        = $scope.insurances;
-    //   self.querySearch   = querySearch;
-    //   self.selectedItemChange = selectedItemChange;
-    //   self.searchTextChange   = searchTextChange;
-    // }
-
-
-    // function querySearch (query) {
-    //   var results = query ? $scope.insurances.filter( createFilterFor(query) ) : $scope.insurances;
-    //   var deferred = $q.defer();
-    //   $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-    //   return deferred.promise;
-    // }
-    // function searchTextChange(text) {
-    //   $log.info('Text changed to ' + text);
-    // }
-
-    // function selectedItemChange(item) {
-    //   $log.info('Item changed to ' + JSON.stringify(item));
-    // }
-
-    // function createFilterFor(query) {
-    //   var lowercaseQuery = angular.lowercase(query);
-    //   return function filterFn(insurance) {
-    //     return (insurance.value.indexOf(lowercaseQuery) === 0);
-    //   };
-    // }
-
 }]);

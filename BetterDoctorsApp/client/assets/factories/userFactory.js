@@ -6,7 +6,6 @@ app.factory('userFactory', ['$http', function($http) {
  		$http.post('/login', data).then(
  			function(returned_data) {
  				callback(returned_data);
-        		console.log('Returned Data', returned_data.data)
  			});
  		}
   	this.register = function(data, callback) {
@@ -14,7 +13,6 @@ app.factory('userFactory', ['$http', function($http) {
 		$http.post('/register', data).then(
 			function(returned_data) {
 				callback(returned_data);
-				console.log('Returned Data', returned_data.data)
 		});
 	}
     }

@@ -42,7 +42,6 @@ app.factory('doctorFactory', ['$http', function($http) {
  		}
  		start += user_key
  		//Make an API call with URL
- 		console.log(start)
  		$http.get(start).then(function(res) {
  			callback(res)
  		})
@@ -73,6 +72,16 @@ app.factory('doctorFactory', ['$http', function($http) {
        		})
        		callback(arr[0].data);
  		})
+ 	}
+ 	this.addDoctor = function(data) {
+ 		console.log(data)
+ 		$http.post('/addDoctor', data).then(
+ 			function(returned_data) {
+ 				callback(returned_data);
+ 			}
+ 		)
+
+ 	
  	}
     }
     return new doctorFactory();
