@@ -15,9 +15,9 @@ var DoctorSchema = new mongoose.Schema({
 	},
 	practices: {
 		type: Array,
-	}
-	category: {
-		type: String,type: String,
+	},
+	phoneNumbers: {
+		type: Array,
 	},
 	}
 }, {timestamps: true})
