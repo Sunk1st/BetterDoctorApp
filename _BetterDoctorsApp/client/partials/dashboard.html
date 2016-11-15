@@ -1,0 +1,115 @@
+<div ng-controller="doctorController as ctrl" layout="column" ng-cloak class="md-inline-form">
+  <div layout-gt-sm="row">
+  	<div id='welcome'>
+  		<h3>Welcome {{first_name}}</h3>
+  	</div>
+  	<div style="padding-left: 120px">
+  		<h3>Find a Doctor!</h3>
+  	</div> 
+  	<div style="padding-left: 120px">
+  		<md-button class='btn1' ng-click="myDoctors($event, this)">My Doctors</md-button>
+  		<md-button class='btn1' ng-click='logOut()'>Log Out</md-button>
+  	</div>
+  </div>
+  <form name='filterForm' ng-submit='getDoctors()'>
+  	<md-content md-theme="docs-dark" layout-gt-sm="row">
+    	<div layout-gt-sm="row">
+		    <md-input-container class="md-block" flex-gt-sm>
+		        <label>First Name</label>
+		        <input ng-model="filter.first_name">
+		    </md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm>
+		        <label>Last Name</label>
+		        <input ng-model="filter.last_name">
+		    </md-input-container flex="20">
+		    <md-input-container class="md-block" flex-gt-sm>
+		        <label>Gender</label>
+		        <md-select ng-model="filter.gender">
+		        	<md-option value="male">Male</md-option>
+		        	<md-option value="female">Female</md-option>
+		        </md-select>
+		    </md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm style= "size = 40">
+		        <label>Distance</label>
+		        <md-select ng-model="filter.distance">
+		        	<md-option value="5">5 Miles</md-option>
+		        	<md-option value="10">10 Miles</md-option>
+		        	<md-option value="25">25 Miles</md-option>
+		        	<md-option value="50">50 Miles</md-option>
+		        	<md-option value="100">100 Miles</md-option>
+		        </md-select>
+		    </md-input-container>
+		    <md-input-container class="md-block" flex-gt-sm>
+	        	<label>Sort</label> 
+	         	<md-select ng-model="filter.sort">
+	         		<md-option value="best-match-asc">Best Match Ascending</md-option>
+	         		<md-option value="best-match-desc">Best Match Descending</md-option>
+	         		<md-option value="rating-asc">Rating Ascending</md-option>
+	         		<md-option value="rating-desc">Rating Descending</md-option>
+	         		<md-option value="distance-asc">Distance Ascending</md-option>
+	         		<md-option value="distance-desc">Distance Descending</md-option>
+	         		<md-option value="first-name-asc">First Name Ascending</md-option>
+	         		<md-option value="first-name-desc">First Name Descending</md-option>
+	         		<md-option value="last-name-asc">Last Name Ascending</md-option>
+	         		<md-option value="last-name-desc">Last Name Descending</md-option>
+	       		</md-select>
+	      	</md-input-container>
+	    </div>
+ 	</md-content>
+  	<md-content md-theme="docs-dark" layout-gt-sm="row">
+    	<div layout-gt-sm="row">
+		  <md-input-container class="md-block" flex-gt-sm>
+	        <label>Specialty</label>
+	        <md-select ng-model="filter.specialty">
+	        	<md-option></md-option>
+	        	<md-option ng-repeat='specialty in specialties' name={{specialty.uid}} value={{specialty.uid}}>{{specialty.name}}</md-option>
+	        </md-select>
+	      </md-input-container>
+	      <md-input-container>
+	        <label>Insurance Plan</label>
+	        <md-select ng-model="filter.insurance" >
+	        	<md-option></md-option>
+	        	<md-option ng-repeat='insurance in insurances' name={{insurance.uid}} value={{insurance.uid}}>{{insurance.name}}</md-option>
+	   		</md-select>
+	      </md-input-container>
+	      <md-input-container>
+	        <label>Query</label>
+	        <input ng-model="filter.query">
+	      </md-input-container>
+	      <md-input-container>
+	        <label>Number of Matches</label>
+	        <input ng-model="filter.limit">
+	      </md-input-container>
+      	  <md-button type="submit" class="md-primary">Find Doctors</md-button>
+      	</div>
+   	</md-content>
+  </form>
+  	<md-content class="md-padding" layout-xs="column" layout="row">
+      <div flex-xs flex-gt-xs="50" layout="column">
+	      <div ng-repeat='doctor in doctors' id="scrollable">
+	      	<div id = "cards">
+		      <md-card md-theme="dark-blue" md-theme-watch class="card">
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Dr. {{doctor.profile.first_name}} {{doctor.profile.middle_name}} {{doctor.profile.last_name}}, {{doctor.profile.title}} </span>
+		            <span class="md-subhead" ng-repeat='specialty in doctor.specialties'>Specialty: {{specialty.name}} </span>
+		            <span class="md-subhead" ng-repeat='practice in doctor.practices'>Practice: <b>{{practice.name}}</b> in {{practice.visit_address.city}}, {{practice.visit_address.state}}  </span>
+		            <span class="md-subhead" ng-repeat='language in doctor.profile.languages'>Language: {{language.name}}</span>
+
+		            <p>BetterDoctors Rating: <img ng-src="{{doctor.ratings[0].image_url_small}}" /></p>
+		          </md-card-title-text>
+		          <md-card-title-media>
+		            <div class="md-media-lg card-media">
+		            	<img ng-src="{{doctor.profile.image_url}}" />
+		            </div>
+		          </md-card-title-media>
+		        </md-card-title>
+		        <md-card-actions layout="row" layout-align="end center">
+		          <md-button class='md-primary md-raised' ng-click="getMoreInfo($event, this.doctor)">More Information</md-button>
+		        </md-card-actions>
+		      </md-card>
+			</div>
+	      <div>
+	  </div>
+	</md-content>
+</div>

@@ -1,0 +1,76 @@
+<div ng-cloak ng-controller='loginController'>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Login"  layout='column' ng-cloak>
+        <md-content class="md-padding">
+          <h1 class="md-title">
+            <form name='loginForm' ng-submit='loginUser()'>
+                <md-input-container class="md-block">
+                    <label>Username</label>
+                    <input md-maxlength="30" required md-no-asterisk name="Username" ng-model="user.username">
+                    <div ng-messages="loginForm.username.$error">
+                      <div ng-message="required">This is required.</div>
+                      <div ng-message="md-maxlength">The username must be less than 30 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input md-maxlength="30" required md-no-asterisk name="Password" ng-model="user.password">
+                    <div ng-messages="loginForm.password.$error">
+                      <div ng-message="required">This is required.</div>
+                      <div ng-message="md-maxlength">The password must be less than 30 characters long.</div>
+                    </div>
+                </md-input-container>
+                <div><md-button class="md-raised md-primary" type="submit">Login</md-button></div>
+            </form>
+          </h1>
+        </md-content>
+      </md-tab>
+      <md-tab label="Registration">
+        <md-content class="md-padding">
+          <h1 class="md-title">
+            <form name='registerForm' ng-submit='registerUser()'>
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>First Name</label>
+                        <input md-maxlength="30" required md-no-asterisk name="first_name" ng-model="user.first_name">
+                        <div ng-messages="loginForm.first_name.$error">
+                          <div ng-message="required">This is required.</div>
+                          <div ng-message="md-maxlength">The first name must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>Last Name</label>
+                        <input md-maxlength="30" required md-no-asterisk name="last_name" ng-model="user.last_name">
+                        <div ng-messages="loginForm.last_name.$error">
+                          <div ng-message="required">This is required.</div>
+                          <div ng-message="md-maxlength">The last name must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>Username</label>
+                        <input md-maxlength="30" required md-no-asterisk name="Username" ng-model="user.username">
+                        <div ng-messages="loginForm.username.$error">
+                          <div ng-message="required">This is required.</div>
+                          <div ng-message="md-maxlength">The username must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>Password</label>
+                        <input md-maxlength="30" required md-no-asterisk name="Password" ng-model="user.password">
+                        <div ng-messages="loginForm.password.$error">
+                          <div ng-message="required">This is required.</div>
+                          <div ng-message="md-maxlength">The password must be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div><md-button class="md-raised md-primary" type="submit">Register</md-button></div>
+            </form>
+          </h1>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
