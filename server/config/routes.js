@@ -1,5 +1,5 @@
 var users = require('./../controllers/Users.js')
-var doctors = require('./../controllers/doctors.js')
+var doctors = require('./../controllers/Doctors.js')
 
 //--------routes------------------//
 
