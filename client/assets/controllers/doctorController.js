@@ -6,16 +6,11 @@ app.controller('doctorController', ['$scope', '$window', '$http', 'doctorFactory
       $scope._id = $cookies.get('_id')
      /*-------Navigator to get Latitude and Longitude of User-------*/
      $scope.getLatLong = function () {
-         $window.navigator.geolocation.getCurrentPosition(function(position) {
-            {timeout:10000}
-            $scope.$apply(function() {
-                $scope.latitude = position.coords.latitude;
-                $scope.longitude = position.coords.longitude;
-                $scope.accuracy = position.coords.accuracy;
-            });
-            }, function(error) {
-                alert(error);
-        });
+        doctorFactory.getLocation( function (res) {
+          console.log('Controller Lat/Long', res)
+          $scope.latitude = res.location.lat
+          $scope.longitude = res.location.lng
+          })
       }
     $scope.getLatLong();
     /*----------Uses an API call to grab insurance info-------------*/

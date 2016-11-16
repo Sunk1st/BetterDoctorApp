@@ -46,6 +46,13 @@ app.factory('doctorFactory', ['$http', function($http) {
  			callback(res)
  		})
  	}
+  this.getLocation = function(callback) {
+    key = 'AIzaSyBewj3bW_ay-JVoCgfFDXUaMR8mkkwpaLU'
+    geoLocationURL = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + key
+    $http.post(geoLocationURL).then(function(res) {
+      callback(res.data)
+    })
+  }
  	
  	this.getInsurance = function(callback) {
  		var arr = []
