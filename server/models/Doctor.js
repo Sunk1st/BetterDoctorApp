@@ -19,7 +19,6 @@ var DoctorSchema = new mongoose.Schema({
 	phoneNumbers: {
 		type: Array,
 	},
-	}
 }, {timestamps: true})
 
 var Doctor = mongoose.model('Doctor', DoctorSchema);
